@@ -1,0 +1,55 @@
+# PrestaShop files (kompletna instalacja)
+prestashop_files/
+
+# Docker volumes
+db_data/
+ps_data/
+
+# Admin folder name
+.admin_folder_name
+
+# Logs
+*.log
+modules/mymodule/logs/
+webhook_received.log
+
+# PrestaShop specific
+/app/cache/*
+/app/logs/*
+/cache/*
+/var/cache/*
+/var/logs/*
+/download/*
+/upload/*
+/img/tmp/*
+
+# Configuration
+/app/config/parameters.php
+/app/config/parameters.yml
+/config/settings.inc.php
+/config/defines.inc.php
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.bak
+*.cache
+
+# Node modules
+node_modules/
+package-lock.json
+yarn.lock
+
+# Composer
+/vendor/
+composer.phar

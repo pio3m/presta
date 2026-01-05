@@ -3,7 +3,8 @@
     "allow": [
       "Bash(docker compose:*)",
       "Bash(docker logs:*)",
-      "Bash(docker cp:*)"
+      "Bash(docker cp:*)",
+      "Bash(bash:*)"
     ]
   }
 }

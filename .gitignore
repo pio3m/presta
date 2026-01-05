@@ -29,6 +29,9 @@ webhook_received.log
 /config/settings.inc.php
 /config/defines.inc.php
 
+# Environment variables (keep .env.example)
+.env
+
 # IDE
 .idea/
 .vscode/

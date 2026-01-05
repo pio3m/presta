@@ -18,25 +18,43 @@ services:
       retries: 5
 
   prestashop:
-    image: prestashop/prestashop:latest
+    image: prestashop/prestashop:8-fpm
     depends_on:
       db:
         condition: service_healthy
-    ports:
-      - "8080:80"
+    expose:
+      - "9000"
     environment:
       DB_SERVER: db
       DB_NAME: prestashop
       DB_USER: prestashop
       DB_PASSWD: prestashop
-      PS_INSTALL_AUTO: 1
-      PS_LANGUAGE: pl
-      PS_COUNTRY: PL
-      PS_ADMIN_EMAIL: admin@prestashop.com
-      PS_ADMIN_PASSWD: Admin123
+      PS_LANGUAGE: ${PS_LANGUAGE:-pl}
+      PS_COUNTRY: ${PS_COUNTRY:-PL}
+      PS_ADMIN_EMAIL: ${PS_ADMIN_EMAIL:-admin@prestashop.com}
+      PS_ADMIN_PASSWD: ${PS_ADMIN_PASSWD:-Admin123}
+      # Automatyczna zmiana nazw folderów podczas instalacji
+      PS_FOLDER_ADMIN: ${PS_FOLDER_ADMIN:-admin333}
+      PS_FOLDER_INSTALL: ${PS_FOLDER_INSTALL:-install_old}
+      PS_DOMAIN: "localhost:8080"
+      APP_DOMAIN: "localhost:8080"
+      PS_INSTALL_AUTO: 0
     volumes:
-      - ./prestashop_files:/var/www/html
+      - ps_data:/var/www/html
+      - ./modules/mymodule:/var/www/html/modules/mymodule
+    restart: unless-stopped
+
+  nginx:
+    image: nginx:alpine
+    depends_on:
+      - prestashop
+    ports:
+      - "8080:80"
+    volumes:
+      - ps_data:/var/www/html:ro
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
     restart: unless-stopped
 
 volumes:
   db_data:
+  ps_data:

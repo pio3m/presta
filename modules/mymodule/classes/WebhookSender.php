@@ -11,8 +11,8 @@ class WebhookSender
 
     public function sendEvent($eventName, $eventData)
     {
-        $endpoint = Configuration::get('MYMODULE_ENDPOINT_URL');
-        $token = Configuration::get('MYMODULE_TOKEN');
+        $endpoint = trim(Configuration::get('MYMODULE_ENDPOINT_URL'));
+        $token = trim(Configuration::get('MYMODULE_TOKEN'));
         $debug = Configuration::get('MYMODULE_DEBUG');
 
         if (empty($endpoint)) {

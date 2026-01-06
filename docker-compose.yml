@@ -34,6 +34,14 @@ services:
         source: ./modules/mymodule # local path to the module
         target: /var/www/html/modules/mymodule # path to be mounted in the container
       - psdata:/var/www/html
+  webhook-receiver:
+    container_name: webhook-receiver
+    build: ./webhook-receiver
+    restart: unless-stopped
+    ports:
+      - 9000:9000
+    networks:
+      - prestashop_network
 networks:
   prestashop_network:
 volumes:

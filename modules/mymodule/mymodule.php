@@ -79,8 +79,8 @@ class MyModule extends Module
         $output = '';
 
         if (Tools::isSubmit('submit' . $this->name)) {
-            Configuration::updateValue('MYMODULE_ENDPOINT_URL', Tools::getValue('MYMODULE_ENDPOINT_URL'));
-            Configuration::updateValue('MYMODULE_TOKEN', Tools::getValue('MYMODULE_TOKEN'));
+            Configuration::updateValue('MYMODULE_ENDPOINT_URL', trim(Tools::getValue('MYMODULE_ENDPOINT_URL')));
+            Configuration::updateValue('MYMODULE_TOKEN', trim(Tools::getValue('MYMODULE_TOKEN')));
             Configuration::updateValue('MYMODULE_DEBUG', (int)Tools::getValue('MYMODULE_DEBUG'));
 
             Configuration::updateValue('MYMODULE_EVENT_CART_UPDATED', (int)Tools::getValue('MYMODULE_EVENT_CART_UPDATED'));
